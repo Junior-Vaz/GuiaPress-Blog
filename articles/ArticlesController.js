@@ -64,13 +64,12 @@ router.post("/articles/delete",(req,res) => {
 
 })
 
-router.get("/admin/articles/edit/:id",(req,res)=>{
-
+router.get("/admin/articles/edit/:id",(req,res) => {
+    
     var id = req.params.id;
 
-    Articles.findByPk(id).then(articles => {
-
-        if (articles != undefined) {
+    Articles.findByPk(id).then(article => {
+        if (article != undefined) {
 
             Category.findAll().then(categories => {
 
