@@ -69,13 +69,14 @@ router.get("/admin/articles/edit/:id",(req,res)=>{
     var id = req.params.id;
 
     Articles.findByPk(id).then(articles => {
+
         if (articles != undefined) {
 
             Category.findAll().then(categories => {
 
                 res.render("admin/articles/edit", {categories: categories})
 
-            })
+            });
 
            
         }else{
