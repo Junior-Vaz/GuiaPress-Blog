@@ -1,0 +1,58 @@
+
+<%- include ('../../partials/header.ejs'); %>
+<%- include ('../../partials/navbar.ejs'); %>
+<div class="container">
+    <hr>
+    <h2>Artigos</h2>
+    <a class="btn btn-success" href="/admin/articles/new">Cria novo artigo</a>
+    <hr>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Título</th>
+                <th>Slug</th>
+                <th>Category</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% articles.forEach(articles =>{ %>
+                <tr>
+                <td><%= articles.id %></td>
+                <td><%= articles.title %></td>
+                <td><%= articles.slug %></td>
+                <td><%= articles.category.title %></td>
+                <td class="d-flex">
+                    <form  action="/articles/delete" method="post" onsubmit="confirmarDelecao(event,this)" >
+                        <button class="btn btn-outline-danger">Deletar</button>
+                        <input type="hidden" value="<%= articles.id%>" name="id">
+                    </form>
+                    <form action="/admin/articles/edit" method="post">
+                        <button class="btn btn-outline-success">Atualizar</button>
+                        <input type="hidden" value="<%=articles.id%>" name="id">
+                        <input type="hidden" value="<%=articles.title%>" name="id">
+                        <input type="hidden" value="<%=articles.body%>" name="id">
+                    </form>
+                </td>
+        
+                </tr>
+            
+            <% }) %>
+        </tbody>
+    </table>
+</div>
+<%- include ('../../partials/footer.ejs') %>
+<script>
+function confirmarDelecao(event,form){
+    event.preventDefault();
+    console.log("o formulario não foi enviado!")
+
+    var decision = confirm("Você quer deletar este artigo?")
+
+    if(decision){
+        console.log("Eu escolhi deletar")
+        form.submit();
+    }
+}
+</script>
