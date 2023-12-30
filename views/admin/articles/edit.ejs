@@ -9,6 +9,7 @@
             <h2>Editar Artigo</h2>
         </div>
         <div class="card-body">
+            <form action="/articles/update" method="post">
             <input type="hidden" name="id" value="<%= article.id %>">
              <input class="form-control" type="text" name="title" id="title" value="<%= article.title %>">
              <br/>
@@ -16,12 +17,16 @@
              <br/>
                 <label>Categorias</label>
                 <select name="category" class="form-control">
+                    <% categories.forEach((categories)=>{ %>
 
-                    <% if(categories.id == article.categoryId) { %>
-                        <option value="<%= categories.id %>" selected><%= category.title %></option>
-                    <% } else { %>
-                        <option value="<%= categories.id %>"><%= categories.title %></option>
-                    <% } %>
+                        <% if(categories.id == article.categoryId) { %>
+                            <option value="<%= categories.id %>" selected><%= categories.title %></option>
+                        <% } else { %>
+                            <option value="<%= categories.id %>"><%= categories.title %></option>
+                        <% } %>
+                        
+                    <% }) %>
+                    
                 </select>
                 <button class="btn btn-success">Atualizar</button>
             </form>
