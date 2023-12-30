@@ -9,16 +9,19 @@
             <h2>Editar Artigo</h2>
         </div>
         <div class="card-body">
-            <form action="/articles/save" method="post">
-                <input class="form-control" type="text" name="title" placeholder="edite o titulo">
-                <br>
-                <textarea id="article" name="body" class="form-control" placeholder="Escreva o artigo aqui!"></textarea>
-                <br>
+            <input type="hidden" name="id" value="<%= article.id %>">
+             <input class="form-control" type="text" name="title" id="title" value="<%= article.title %>">
+             <br/>
+             <textarea class="form-control"  name="body" id="article"><%- article.body %></textarea>
+             <br/>
                 <label>Categorias</label>
                 <select name="category" class="form-control">
-                    <% categories.forEach((category)=>{ %>
-                        <option value="<%= category.id %>"><%= category.title %></option>
-                    <% }) %>
+
+                    <% if(categories.id == article.categoryId) { %>
+                        <option value="<%= categories.id %>" selected><%= category.title %></option>
+                    <% } else { %>
+                        <option value="<%= categories.id %>"><%= categories.title %></option>
+                    <% } %>
                 </select>
                 <button class="btn btn-success">Atualizar</button>
             </form>
@@ -27,19 +30,13 @@
 </div>
 
 
-<div id="content" style="display: none;">
-    <%- article.body %>
-</div>
-
 <%- include ('../../partials/footer.ejs') %>
 <script src="/tinymce/tinymce.min.js"></script>
 <script>
     tinymce.init({
         language: 'pt_BR',
         selector: "#article",
-        plugins: ['advlist', 'autolink' , 'link' , 'image' , 'lists' , 'print' , 'preview' , 'hr' , 'searchreplace' , 'wordcount' , 'fullscreen' , 'insertdatetime' , 'media' , 'save' , 'table' , 'paste'],
-        init_instance_callback: () =>{
-            tinymce.get("article").setContent($("#content").html())
-        }
+        plugins: ['advlist', 'autolink' , 'link' , 'image' , 'lists' , 'print' , 'preview' , 'hr' , 'searchreplace' , 'wordcount' , 'fullscreen' , 'insertdatetime' , 'media' , 'save' , 'table' , 'paste']
+    
     })
 </script>
