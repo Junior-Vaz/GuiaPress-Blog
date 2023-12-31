@@ -2,20 +2,9 @@
 <%- include ('./partials/header.ejs'); %>
 <%- include ('./partials/navbarhome.ejs'); %>
 
-<style>
-   #l:hover{
-      background-color: rgb(49, 97, 255);
-      color: white;
-   }
-</style>
+<div class=" d-flex flex-wrap-reverse" >
 
-<div class=" d-flex" >
-
-   <div class="nav pt-3 bg-light flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <% categories.forEach(category => { %>
-      <a class=" nav-link" id="l" id="v-pills-home-tab" data-toggle="pill" href="/category/<%= category.slug %>" role="tab" aria-controls="v-pills-home" aria-selected="true"><%= category.title %></a>    
-      <% }); %>
-   </div>
+   
 
    <div class="container">
       <br>
@@ -28,24 +17,32 @@
            <a class="btn btn-primary btn-lg" href="#" role="button">Ler mais!</a>
          </p>
        </div>
-       
-              <% articles.forEach(articles =>{ %>
+       <div class="row">
+
+         <% articles.forEach(articles =>{ %>
                        
-               <div class="card">
-                  <div class="card-header">
-                     <h4><%=articles.title%></h4>
+            <div class="col-md-4 mb-4 ">
+               <div class="card card1">
+                  <div class="card-body  div1">
+                    <h5 class="card-title"><%=articles.title%></h5>
+                    <p class="card-text"><%-articles.body%></p>
                   </div>
-                  <div class="card-body">
-                     <a href="/<%= articles.slug %>" class="btn btn-success">
-                        Ler arquivo!
-                     </a>
+                  <div class="card-footer footer">
+                     <a href="/<%= articles.slug %>" class="btn btn-success">ler</a>
+                    <small class="text-muted"><%- articles.updatedAt %></small>
                   </div>
-               </div>
-              <br>
-              <% }) %>
-          
-      
+                </div>
+            </div>
+           <% }) %>
+       </div>
+              
   </div>
+  <div class="nav pt-3 bg-light flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+   <a class=" nav-link" id="l" id="v-pills-home-tab" data-toggle="pill" href="/" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>    
+   <% categories.forEach(category => { %>
+   <a class=" nav-link" id="l" id="v-pills-home-tab" data-toggle="pill" href="/category/<%= category.slug %>" role="tab" aria-controls="v-pills-home" aria-selected="true"><%= category.title %></a>    
+   <% }); %>
+</div>
 
 </div>
 <%- include ('./partials/footer.ejs') %>

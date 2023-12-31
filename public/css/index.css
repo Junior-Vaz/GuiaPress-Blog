@@ -1,0 +1,25 @@
+#l:hover{
+    background-color: rgb(49, 97, 255);
+    color: white;
+ }
+ #l{
+    border-radius: 0;
+ }
+ .ocultar-scroll::-webkit-scrollbar {
+      display: none; /* Para navegadores baseados em WebKit, como Chrome/Safari */
+  }
+  .div1{
+    height: 300px;
+    overflow-y:hidden;
+  }
+  .card1{
+    transition: 0.5s ease-in-out;
+    cursor: pointer;
+  }
+  .card1:hover{
+    transform: translateY(10px);
+    background-color:#f4f9ff;
+    
+  }
+
+  
