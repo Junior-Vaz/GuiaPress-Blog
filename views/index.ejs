@@ -1,8 +1,22 @@
 
 <%- include ('./partials/header.ejs'); %>
 <%- include ('./partials/navbarhome.ejs'); %>
-<div class="container">
-   
+
+<style>
+   #l:hover{
+      background-color: rgb(49, 97, 255);
+      color: white;
+   }
+</style>
+
+<div class=" d-flex" >
+
+   <div class="nav pt-3 bg-light flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <% categories.forEach(category => { %>
+      <a class=" nav-link" id="l" id="v-pills-home-tab" data-toggle="pill" href="/category/<%= category.slug %>" role="tab" aria-controls="v-pills-home" aria-selected="true"><%= category.title %></a>    
+      <% }); %>
+   </div>
+
    <div class="container">
       <br>
       <div class="jumbotron">
