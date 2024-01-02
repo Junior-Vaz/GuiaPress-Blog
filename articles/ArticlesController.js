@@ -113,6 +113,40 @@ router.post("/articles/update", (req, res)=>{ //update
 
 })
 
+router.get("/articles/page/:num", (req, res)=>{
+    //buscando parametros
+    var page = req.params.num;
+    var offset = 0;
+
+    //verificando se e um numero 
+    if(isNaN(page) || page == 1){
+        offset = 0;
+    }else{
+        offset = parseInt(page * 4)
+    }
+
+    //select de paginação
+    Articles.findAndCountAll({
+        limit: 4,
+        offset: offset
+    }).then( articles => {
+
+        var next;
+        if(offset + 4 >= articles.count){
+            next = false;
+        }else{
+            next = true;
+        }
+
+        var result = { next: next,
+        articles: articles}
+
+        res.json(result)
+
+    })
+
+})
+
 
 
 module.exports = router;
