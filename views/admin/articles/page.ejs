@@ -1,0 +1,38 @@
+
+<%- include ('../../partials/header.ejs'); %>
+<%- include ('../../partials/navbarhome.ejs'); %>
+
+<div class=" d-flex flex-wrap-reverse" >
+
+   
+
+   <div class="container">
+       <div class="row">
+
+         <% result.articles.rows.forEach(articles =>{ %>
+                       
+            <div class="col-md-4 mb-4 ">
+               <div class="card card1">
+                  <div class="card-body div1">
+                    <h5 class="card-title"><%=articles.title%></h5>
+                    <p class="card-text"><%-articles.body%></p>
+                  </div>
+                  <div class="card-footer footer">
+                     <a href="/<%= articles.slug %>" class="btn btn-success">ler</a>
+                    <small class="text-muted"><%- articles.updatedAt %></small>
+                  </div>
+                </div>
+            </div>
+           <% }) %>
+       </div>
+              
+  </div>
+  <div class="nav pt-3 bg-light flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+   <a class=" nav-link" id="l" id="v-pills-home-tab" data-toggle="pill" href="/" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>    
+   <% categories.forEach(category => { %>
+   <a class=" nav-link" id="l" id="v-pills-home-tab" data-toggle="pill" href="/category/<%= category.slug %>" role="tab" aria-controls="v-pills-home" aria-selected="true"><%= category.title %></a>    
+   <% }); %>
+</div>
+
+</div>
+<%- include ('../../partials/footer.ejs') %>

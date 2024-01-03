@@ -122,7 +122,7 @@ router.get("/articles/page/:num", (req, res)=>{
     if(isNaN(page) || page == 1){
         offset = 0;
     }else{
-        offset = parseInt(page * 4)
+        offset = parseInt(page) * 4;
     }
 
     //select de paginação
@@ -140,8 +140,13 @@ router.get("/articles/page/:num", (req, res)=>{
 
         var result = { next: next,
         articles: articles}
+        
+        Category.findAll().then(categories => {
 
-        res.json(result)
+            res.render("admin/articles/page", { categories: categories, result: result})
+
+        })
+      
 
     })
 
